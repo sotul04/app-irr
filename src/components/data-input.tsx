@@ -83,10 +83,11 @@ export function DataInput() {
                 })
             }
         } catch (error) {
+            console.error(error)
             setIrrValue({
                 value: 0,
                 error: 'Error: gagal mendapatkan respons dari server.'
-            })
+            });
         }
         setIsLoading(false);
     }

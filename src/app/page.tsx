@@ -1,5 +1,4 @@
 import { DataInput } from "@/components/data-input";
-import Image from "next/image";
 
 export default function Home() {
   return <>
