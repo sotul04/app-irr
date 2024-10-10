@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { LoaderIcon } from "lucide-react";
 
 export function DataInput() {
-    const [periodes, setPeriodes] = useState(2);
+    const [periodes, setPeriodes] = useState<string>("2");
     const [data, setData] = useState<Array<{ spending: number; income: number }>>([{ spending: 0, income: 0 }, { spending: 0, income: 0 }]);
     const [isLoading, setIsLoading] = useState(false);
     const [irrValue, setIrrValue] = useState<{ value: number, error: string | null } | null>(null);
@@ -15,22 +15,22 @@ export function DataInput() {
     const handlePeriodesChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const newValue = e.target.value;
 
-        // Validate input to be numeric
-        if (/^\d*\.?\d*$/.test(newValue)) {
-            const newPeriodes = Math.max(2, Number(newValue)); // Ensure minimum of 2 periods
-            setPeriodes(newPeriodes);
+        setPeriodes(newValue);
 
-            if (newPeriodes > data.length) {
-                // Add new entries
-                const additionalEntries = Array.from({ length: newPeriodes - data.length }, () => ({
-                    spending: 0,
-                    income: 0
-                }));
-                setData(prev => [...prev, ...additionalEntries]);
-            } else if (newPeriodes < data.length) {
-                // Slice the data array to the new number of periods
-                setData(prev => prev.slice(0, newPeriodes));
-            }
+        let newPeriodes = 2
+        if (/^\d*\.?\d*$/.test(newValue)) {
+            newPeriodes = Math.max(2, Number(newValue));
+        }
+        if (newPeriodes > data.length) {
+            // Add new entries
+            const additionalEntries = Array.from({ length: newPeriodes - data.length }, () => ({
+                spending: 0,
+                income: 0
+            }));
+            setData(prev => [...prev, ...additionalEntries]);
+        } else if (newPeriodes < data.length) {
+            // Slice the data array to the new number of periods
+            setData(prev => prev.slice(0, newPeriodes));
         }
     };
 
@@ -110,7 +110,7 @@ export function DataInput() {
                 <table className="min-w-full">
                     <thead>
                         <tr>
-                            <th className="p-2 text-left">No</th>
+                            <th className="p-2 text-left">Tahun</th>
                             <th className="p-2 text-center">Konstribusi</th>
                             <th className="p-2 text-center">Keuntungan</th>
                         </tr>
@@ -118,7 +118,7 @@ export function DataInput() {
                     <tbody>
                         {data.map((item, index) => (
                             <tr key={index}>
-                                <td className="p-2 text-left">{index + 1}</td>
+                                <td className="p-2 text-left">{index}</td>
                                 <td className="p-2">
                                     <Input
                                         type="text" // Change to text to allow decimal input
