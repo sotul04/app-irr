@@ -107,10 +107,10 @@ export function DataInput() {
                 />
             </div>
             <div className="overflow-x-auto">
-                <table className="min-w-full">
+                <table className="mx-2 sm:mx-1 md:mx-0">
                     <thead>
                         <tr>
-                            <th className="p-2 text-left">Tahun</th>
+                            <th className="p-2 text-center">Tahun</th>
                             <th className="p-2 text-center">Konstribusi</th>
                             <th className="p-2 text-center">Keuntungan</th>
                         </tr>
@@ -118,7 +118,7 @@ export function DataInput() {
                     <tbody>
                         {data.map((item, index) => (
                             <tr key={index}>
-                                <td className="p-2 text-left">{index}</td>
+                                <td className="p-2 text-center">{index}</td>
                                 <td className="p-2">
                                     <Input
                                         type="text" // Change to text to allow decimal input
