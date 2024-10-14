@@ -101,7 +101,7 @@ export function DataInput() {
                     className="w-[250px] max-w-[90%]"
                     type="number"
                     inputMode="numeric"
-                    min={2}
+                    min={1}
                     value={periodes}
                     onChange={handlePeriodesChange}
                 />
