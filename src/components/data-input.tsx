@@ -6,7 +6,7 @@ import { Button } from "./ui/button";
 import { LoaderIcon } from "lucide-react";
 
 export function DataInput() {
-    const [periodes, setPeriodes] = useState<string>("2");
+    const [periodes, setPeriodes] = useState<string>("1");
     const [data, setData] = useState<Array<{ spending: number; income: number }>>([{ spending: 0, income: 0 }, { spending: 0, income: 0 }]);
     const [isLoading, setIsLoading] = useState(false);
     const [irrValue, setIrrValue] = useState<{ value: number, error: string | null } | null>(null);
@@ -19,7 +19,7 @@ export function DataInput() {
 
         let newPeriodes = 2
         if (/^\d*\.?\d*$/.test(newValue)) {
-            newPeriodes = Math.max(2, Number(newValue));
+            newPeriodes = Math.max(2, Number(newValue) + 1);
         }
         if (newPeriodes > data.length) {
             // Add new entries
